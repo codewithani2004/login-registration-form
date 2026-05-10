@@ -1,0 +1,12 @@
+# Node modules
+node_modules/
+
+# Vite build
+dist/
+
+# Env file
+.env
+
+# Logs
+logs
+*.log
