@@ -1,100 +1,89 @@
+import React, { useState } from "react";
+import axios from "axios";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
-import axios from 'axios';
-
-const Register = () => {
+function Register() {
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const navigate = useNavigate();
-
-    // 👉 local backend base URL
-    const BASE_URL = "http://localhost:5000";
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        try {
-            const res = await axios.post(
-                `${BASE_URL}/register`,
-                {
-                    name,
-                    email,
-                    password
-                }
-            );
-
-            console.log(res.data);
-
-            if (res.data === "Already registered") {
-                alert("E-mail already registered! Please Login.");
-            } else {
-                alert("Registered successfully!");
-                navigate("/login");
-            }
-
-        } catch (err) {
-            console.log(err);
-            alert("Server error or backend not running");
-        }
+    const handleRegister = () => {
+        axios.post("http://localhost:5000/register", {
+            name,
+            email,
+            password
+        })
+        .then(res => {
+            alert(res.data.message);
+            window.location.href = "/login";
+        });
     };
 
     return (
-        <div
-            className="d-flex justify-content-center align-items-center text-center vh-100"
-            style={{ backgroundImage: "linear-gradient(#00d5ff,#0095ff,rgba(93,0,255,.555))" }}
-        >
+        <div style={styles.container}>
+            <div style={styles.box}>
 
-            <div className="bg-white p-3 rounded" style={{ width: '40%' }}>
+                <h2>Register 📝</h2>
 
-                <h2 className='mb-3 text-primary'>Register</h2>
+                <input
+                    placeholder="Name"
+                    style={styles.input}
+                    onChange={(e) => setName(e.target.value)}
+                />
 
-                <form onSubmit={handleSubmit}>
+                <input
+                    placeholder="Email"
+                    style={styles.input}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
 
-                    <input
-                        type="text"
-                        placeholder="Enter Name"
-                        className="form-control mb-3"
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                    />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    style={styles.input}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
 
-                    <input
-                        type="email"
-                        placeholder="Enter Email"
-                        className="form-control mb-3"
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
+                <button style={styles.button} onClick={handleRegister}>
+                    Register
+                </button>
 
-                    <input
-                        type="password"
-                        placeholder="Enter Password"
-                        className="form-control mb-3"
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-
-                    <button type="submit" className="btn btn-primary w-100">
-                        Register
-                    </button>
-
-                </form>
-
-                <p className='mt-3'>Already have an account?</p>
-
-                <Link to="/login" className="btn btn-secondary w-100">
-                    Login
-                </Link>
+                <p onClick={() => window.location.href = "/login"} style={{ cursor: "pointer" }}>
+                    Already user? Login
+                </p>
 
             </div>
-
         </div>
     );
+}
+
+const styles = {
+    container: {
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        background: "linear-gradient(135deg, #667eea, #764ba2)"
+    },
+    box: {
+        width: "300px",
+        padding: "25px",
+        background: "white",
+        borderRadius: "10px",
+        textAlign: "center"
+    },
+    input: {
+        width: "100%",
+        padding: "10px",
+        margin: "8px 0"
+    },
+    button: {
+        width: "100%",
+        padding: "10px",
+        background: "#667eea",
+        color: "white",
+        border: "none"
+    }
 };
 
 export default Register;

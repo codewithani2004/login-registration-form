@@ -1,87 +1,85 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
-const Login = () => {
+function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const navigate = useNavigate();
-
-    // 👉 local backend base URL
-    const BASE_URL = "http://localhost:5000";
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        try {
-            const res = await axios.post(
-                `${BASE_URL}/login`,
-                {
-                    email,
-                    password
-                }
-            );
-
-            console.log(res.data);
-
-            if (res.data === "Success") {
-                alert("Login successful!");
-                navigate("/");
+    const handleLogin = () => {
+        axios.post("http://localhost:5000/login", {
+            email,
+            password
+        })
+        .then(res => {
+            if (res.data.message === "Login successful") {
+                localStorage.setItem("user", JSON.stringify(res.data.user));
+                window.location.href = "/home";
             } else {
-                alert(res.data);
+                alert(res.data.message);
             }
-
-        } catch (err) {
-            console.log(err);
-            alert("Server error (backend running check করো)");
-        }
+        });
     };
 
     return (
-        <div className="d-flex justify-content-center align-items-center vh-100">
+        <div style={styles.container}>
+            <div style={styles.box}>
 
-            <div className="bg-white p-3 rounded" style={{ width: "40%" }}>
+                <h2>Login 🔐</h2>
 
-                <h2>Login</h2>
+                <input
+                    placeholder="Email"
+                    style={styles.input}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
 
-                <form onSubmit={handleSubmit}>
+                <input
+                    type="password"
+                    placeholder="Password"
+                    style={styles.input}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
 
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        className="form-control mb-2"
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
+                <button style={styles.button} onClick={handleLogin}>
+                    Login
+                </button>
 
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        className="form-control mb-2"
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-
-                    <button className="btn btn-primary w-100" type="submit">
-                        Login
-                    </button>
-
-                </form>
-
-                <Link
-                    to="/register"
-                    className="btn btn-secondary w-100 mt-2"
-                >
-                    Register
-                </Link>
+                <p onClick={() => window.location.href = "/register"} style={{ cursor: "pointer" }}>
+                    New user? Register
+                </p>
 
             </div>
-
         </div>
     );
+}
+
+const styles = {
+    container: {
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        background: "linear-gradient(135deg, #667eea, #764ba2)"
+    },
+    box: {
+        width: "300px",
+        padding: "25px",
+        background: "white",
+        borderRadius: "10px",
+        textAlign: "center"
+    },
+    input: {
+        width: "100%",
+        padding: "10px",
+        margin: "8px 0"
+    },
+    button: {
+        width: "100%",
+        padding: "10px",
+        background: "#667eea",
+        color: "white",
+        border: "none"
+    }
 };
 
 export default Login;

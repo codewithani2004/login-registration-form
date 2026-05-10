@@ -1,92 +1,77 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const FormDataModel = require('./models/FormData');
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const dotenv = require("dotenv");
 
 dotenv.config();
 
 const app = express();
 
-// middleware
 app.use(express.json());
-app.use(cors({
-    origin: true
-}));
+app.use(cors({ origin: true }));
 
 // =======================
-// MongoDB CONNECTION
+// MongoDB CONNECT
 // =======================
 mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log("MongoDB connected"))
-    .catch(err => console.log("DB Error:", err));
-
+.then(() => console.log("MongoDB Connected"))
+.catch(err => console.log(err));
 
 // =======================
-// REGISTER API
+// USER MODEL
 // =======================
-app.post('/register', async (req, res) => {
-    try {
-        const { name, email, password } = req.body;
+const UserSchema = new mongoose.Schema({
+    name: String,
+    email: String,
+    password: String
+});
 
-        const existingUser = await FormDataModel.findOne({ email });
+const User = mongoose.model("User", UserSchema);
 
-        if (existingUser) {
-            return res.json("Already registered");
-        }
+// =======================
+// REGISTER
+// =======================
+app.post("/register", async (req, res) => {
+    const { name, email, password } = req.body;
 
-        const newUser = await FormDataModel.create({
-            name,
-            email,
-            password
-        });
+    const exist = await User.findOne({ email });
 
-        res.json(newUser);
-
-    } catch (error) {
-        res.json(error);
+    if (exist) {
+        return res.json({ message: "User already exists" });
     }
+
+    const user = await User.create({ name, email, password });
+
+    res.json({ message: "Register successful", user });
 });
 
-
 // =======================
-// LOGIN API
+// LOGIN
 // =======================
-app.post('/login', async (req, res) => {
-    try {
-        const { email, password } = req.body;
+app.post("/login", async (req, res) => {
+    const { email, password } = req.body;
 
-        const user = await FormDataModel.findOne({ email });
+    const user = await User.findOne({ email });
 
-        if (!user) {
-            return res.json("No records found!");
-        }
-
-        if (user.password !== password) {
-            return res.json("Wrong password");
-        }
-
-        res.json("Success");
-
-    } catch (error) {
-        res.json(error);
+    if (!user) {
+        return res.json({ message: "User not found" });
     }
+
+    if (user.password !== password) {
+        return res.json({ message: "Wrong password" });
+    }
+
+    res.json({
+        message: "Login successful",
+        user
+    });
 });
 
-
 // =======================
-// TEST ROUTE
+// SERVER START
 // =======================
-app.get('/check', (req, res) => {
-    res.send("Server is running fine ✔️");
-});
-
-
-// =======================
-// START SERVER
-// =======================
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log("Server running on " + PORT);
 });
