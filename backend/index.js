@@ -1,114 +1,92 @@
-// const cors = require('cors');
-// const express = require('express');
-// const mongoose = require('mongoose');
-// const dotenv = require('dotenv');
-// const FormDataModel = require('./models/FormData');
-// const app = express();
-// const port = 3001;
-// dotenv.config();  // load .env
-// app.use(express.json());
-// app.use(cors({
-//     origin: true
-// }))
-
-// // MongoDB connection
-// mongoose.connect(process.env.MONGO_URI)
-//   .then(() => console.log("MongoDB connected"))
-//   .catch(err => console.log(err));
-
-// // Register endpoint
-// app.post('/register', (req, res) => {
-//     const { email, password } = req.body;
-//     FormDataModel.findOne({ email })
-//         .then(user => {
-//             if (user) res.json("Already registered");
-//             else {
-//                 FormDataModel.create(req.body)
-//                     .then(stu_reg => res.json(stu_reg))
-//                     .catch(err => res.json(err));
-//             }
-//         });
-// });
-
-// // Login endpoint
-// app.post('/login', (req, res) => {
-//     const { email, password } = req.body;
-//     FormDataModel.findOne({ email })
-//         .then(user => {
-//             if (user) {
-//                 if (user.password == password) res.json("Success");
-//                 else res.json("Wrong password");
-//             } else res.json("No records found!");
-//         });
-// });
-// app.get('/check',(req,res)=>{
-//     res.send("okay")
-// })
-// // Start server
-// const PORT = process.env.PORT || 3001;
-// app.listen(PORT, () => {
-//     console.log(`Server listening on http://127.0.0.1:${PORT}`);
-// });
-
-const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const dotenv = require('dotenv');
 const FormDataModel = require('./models/FormData');
 
-const app = express();
-
-// Load .env
 dotenv.config();
 
-// Middleware
+const app = express();
+
+// middleware
 app.use(express.json());
-app.use(cors({ origin: true }));
+app.use(cors({
+    origin: true
+}));
 
-// MongoDB connection
+// =======================
+// MongoDB CONNECTION
+// =======================
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ MongoDB connected"))
-  .catch(err => console.log("❌ MongoDB error:", err));
+    .then(() => console.log("MongoDB connected"))
+    .catch(err => console.log("DB Error:", err));
 
-// Register endpoint
-app.post('/register', (req, res) => {
-    const { email, password } = req.body;
 
-    FormDataModel.findOne({ email })
-        .then(user => {
-            if (user) return res.json("Already registered");
+// =======================
+// REGISTER API
+// =======================
+app.post('/register', async (req, res) => {
+    try {
+        const { name, email, password } = req.body;
 
-            FormDataModel.create({ email, password })
-                .then(stu_reg => res.json(stu_reg))
-                .catch(err => res.json(err));
-        })
-        .catch(err => res.json(err));
+        const existingUser = await FormDataModel.findOne({ email });
+
+        if (existingUser) {
+            return res.json("Already registered");
+        }
+
+        const newUser = await FormDataModel.create({
+            name,
+            email,
+            password
+        });
+
+        res.json(newUser);
+
+    } catch (error) {
+        res.json(error);
+    }
 });
 
-// Login endpoint
-app.post('/login', (req, res) => {
-    const { email, password } = req.body;
 
-    FormDataModel.findOne({ email })
-        .then(user => {
-            if (user) {
-                if (user.password === password) res.json("Success");
-                else res.json("Wrong password");
-            } else {
-                res.json("No records found!");
-            }
-        })
-        .catch(err => res.json(err));
+// =======================
+// LOGIN API
+// =======================
+app.post('/login', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        const user = await FormDataModel.findOne({ email });
+
+        if (!user) {
+            return res.json("No records found!");
+        }
+
+        if (user.password !== password) {
+            return res.json("Wrong password");
+        }
+
+        res.json("Success");
+
+    } catch (error) {
+        res.json(error);
+    }
 });
 
-// Test route
+
+// =======================
+// TEST ROUTE
+// =======================
 app.get('/check', (req, res) => {
-    res.send("okay");
+    res.send("Server is running fine ✔️");
 });
 
-// Start server (PORT FIXED)
-const PORT = process.env.PORT || 5000;
+
+// =======================
+// START SERVER
+// =======================
+const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
-    console.log(`🚀 Server running on ${PORT}`);
+    console.log(`Server running on http://localhost:${PORT}`);
 });

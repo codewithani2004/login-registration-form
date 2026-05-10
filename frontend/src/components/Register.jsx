@@ -5,20 +5,28 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 const Register = () => {
+
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
     const navigate = useNavigate();
+
+    // 👉 local backend base URL
+    const BASE_URL = "http://localhost:5000";
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         try {
-            const res = await axios.post("https://login-registration-form-2-8bh2.onrender.com/register", {
-                name,
-                email,
-                password
-            });
+            const res = await axios.post(
+                `${BASE_URL}/register`,
+                {
+                    name,
+                    email,
+                    password
+                }
+            );
 
             console.log(res.data);
 
@@ -26,9 +34,8 @@ const Register = () => {
                 alert("E-mail already registered! Please Login.");
             } else {
                 alert("Registered successfully!");
+                navigate("/login");
             }
-
-            navigate("/login");
 
         } catch (err) {
             console.log(err);
@@ -37,10 +44,13 @@ const Register = () => {
     };
 
     return (
-        <div className="d-flex justify-content-center align-items-center text-center vh-100"
-            style={{ backgroundImage: "linear-gradient(#00d5ff,#0095ff,rgba(93,0,255,.555))" }}>
+        <div
+            className="d-flex justify-content-center align-items-center text-center vh-100"
+            style={{ backgroundImage: "linear-gradient(#00d5ff,#0095ff,rgba(93,0,255,.555))" }}
+        >
 
             <div className="bg-white p-3 rounded" style={{ width: '40%' }}>
+
                 <h2 className='mb-3 text-primary'>Register</h2>
 
                 <form onSubmit={handleSubmit}>
@@ -72,13 +82,17 @@ const Register = () => {
                     <button type="submit" className="btn btn-primary w-100">
                         Register
                     </button>
+
                 </form>
 
                 <p className='mt-3'>Already have an account?</p>
+
                 <Link to="/login" className="btn btn-secondary w-100">
                     Login
                 </Link>
+
             </div>
+
         </div>
     );
 };
