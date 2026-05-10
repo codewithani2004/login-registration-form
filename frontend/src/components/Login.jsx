@@ -14,7 +14,7 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const res = await axios.post("http://localhost:5000/login", {
+            const res = await axios.post("https://login-registration-form-2-8bh2.onrender.com/login", {
                 email,
                 password
             });
