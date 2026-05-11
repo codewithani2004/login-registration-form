@@ -13,13 +13,10 @@ function Auth() {
     // ================= LOGIN =================
     const handleLogin = () => {
 
-        // axios.post("https://login-registration-form-3-jj64.onrender.com/login", {
-        //     email,
-        //     password
+        axios.post("https://login-registration-form-3-jj64.onrender.com/login", {
+            email,
+            password
 
-        axios.post("https://login-registration-form-2-8bh2.onrender.com/login", {
-        email,
-    password
 })
         .then(res => {
 
@@ -44,14 +41,11 @@ function Auth() {
     // ================= REGISTER =================
     const handleRegister = () => {
 
-        // axios.post("https://login-registration-form-3-jj64.onrender.com/register", {
-        //     name,
-        //     email,
-        //     password
-        axios.post("https://login-registration-form-2-8bh2.onrender.com/register", {
-    name,
-    email,
-    password
+        axios.post("https://login-registration-form-3-jj64.onrender.com/register", {
+            name,
+            email,
+            password
+        
 
         })
 

@@ -98,15 +98,11 @@ function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    // const handleLogin = () => {
-    //     axios.post("https://login-registration-form-3-jj64.onrender.com/login", {
-    //         email,
-    //         password
-
     const handleLogin = () => {
-    axios.post("https://login-registration-form-2-8bh2.onrender.com/login", {
-        email,
-        password
+        axios.post("https://login-registration-form-3-jj64.onrender.com/login", {
+            email,
+            password
+
         })
         .then(res => {
 
