@@ -27,18 +27,34 @@ function Auth() {
     };
 
     // ================= REGISTER =================
+    // const handleRegister = () => {
+    //     axios.post("http://localhost:5000/register", {
+    //         name,
+    //         email,
+    //         password
+    //     })
+    //     .then(res => {
+    //         alert(res.data.message);
+    //         setIsLogin(true); // auto switch to login
+    //     })
+    //     .catch(err => console.log(err));
+    // };
+
     const handleRegister = () => {
-        axios.post("http://localhost:5000/register", {
-            name,
-            email,
-            password
-        })
-        .then(res => {
-            alert(res.data.message);
-            setIsLogin(true); // auto switch to login
-        })
-        .catch(err => console.log(err));
-    };
+    axios.post("https://login-registration-form-3-jj64.onrender.com/register", {
+        name,
+        email,
+        password
+    })
+    .then(res => {
+        alert(res.data.message);
+        setIsLogin(true); // auto switch to login
+    })
+    .catch(err => {
+        console.log(err);
+        alert("Server error");
+    });
+};
 
     return (
         <div style={styles.container}>

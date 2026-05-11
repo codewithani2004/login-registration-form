@@ -7,17 +7,34 @@ function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    // const handleRegister = () => {
+    //     axios.post("http://localhost:5000/register", {
+    //         name,
+    //         email,
+    //         password
+    //     })
+    //     .then(res => {
+    //         alert(res.data.message);
+    //         window.location.href = "/login";
+    //     });
+    // };
+
+
     const handleRegister = () => {
-        axios.post("http://localhost:5000/register", {
-            name,
-            email,
-            password
-        })
-        .then(res => {
-            alert(res.data.message);
-            window.location.href = "/login";
-        });
-    };
+    axios.post("https://login-registration-form-3-jj64.onrender.com/register", {
+        name,
+        email,
+        password
+    })
+    .then(res => {
+        alert(res.data.message);
+        window.location.href = "/login";
+    })
+    .catch(err => {
+        console.log(err);
+        alert("Server error");
+    });
+};
 
     return (
         <div style={styles.container}>
