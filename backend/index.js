@@ -349,6 +349,7 @@ const User = mongoose.model("User", UserSchema);
 // REGISTER API
 // =======================
 app.post("/register", async (req, res) => {
+    console.log("BODY:", req.body);
     try {
         const { name, email, password } = req.body || {};
 

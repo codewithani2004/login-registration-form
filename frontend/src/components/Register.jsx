@@ -9,6 +9,10 @@ function Register() {
     const [password, setPassword] = useState("");
 
     const handleRegister = () => {
+        if (!name || !email || !password) {
+        alert("All fields required");
+        return;
+    }
         axios.post("https://login-registration-form-3-jj64.onrender.com/register", {
             name,
             email,
