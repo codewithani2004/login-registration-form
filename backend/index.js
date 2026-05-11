@@ -310,7 +310,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-    origin: "https://whimsical-mandazi-be2e85.netlify.app",
+    origin: "https://login-registero.netlify.app/",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
