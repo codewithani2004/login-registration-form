@@ -305,10 +305,17 @@ dotenv.config();
 const app = express();
 
 // =======================
-// MIDDLEWARE
+// MIDDLEWARE (FIXED)
 // =======================
 app.use(express.json());
-app.use(cors());
+
+app.use(cors({
+    origin: "https://whimsical-mandazi-be2e85.netlify.app",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
+
+app.options("*", cors());
 
 // =======================
 // ROOT ROUTE
