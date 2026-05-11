@@ -1,36 +1,3 @@
-// import React from "react";
-
-// function Home() {
-
-//     const user = JSON.parse(localStorage.getItem("user"));
-
-//     if (!user) {
-//         window.location.href = "/";
-//     }
-
-//     const logout = () => {
-//         localStorage.removeItem("user");
-//         window.location.href = "/";
-//     };
-
-//     return (
-//         <div style={{ textAlign: "center", marginTop: "50px" }}>
-//             <h1>Welcome {user?.name} 🎉</h1>
-
-//             <button onClick={logout} style={{
-//                 padding: "10px 20px",
-//                 background: "red",
-//                 color: "white",
-//                 border: "none"
-//             }}>
-//                 Logout
-//             </button>
-//         </div>
-//     );
-// }
-
-// export default Home;
-
 
 
 import React from "react";

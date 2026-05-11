@@ -6,28 +6,6 @@ function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    // const handleLogin = () => {
-    //     // axios.post("http://git add ./login", {
-    //     axios.post("https://login-registration-form-3-jj64.onrender.com/login", {
-    //         email,
-    //         password
-    //     })
-    //     .then(res => {
-    //         if (res.data.message === "Login successful") {
-    //             localStorage.setItem("user", JSON.stringify(res.data.user));
-    //             window.location.href = "/home";
-    //         } else {
-    //             alert(res.data.message);
-    //         }
-
-    //           })
-    // .catch(err => {
-    //     console.log(err);
-    //     alert("Server error")
-    //     });
-
-
-    // };
  const handleLogin = () => {
     axios.post("https://login-registration-form-3-jj64.onrender.com/login", {
         email,
