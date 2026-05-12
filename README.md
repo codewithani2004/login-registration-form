@@ -1,7 +1,7 @@
 ## Login-Registration-With-Mongo-DB
 
 # 🌐 Live Demo
-👉 [Check out the live app on Netlify](https://login-registero.netlify.app)
+👉 [Check out the live app on Netlify] (https://login-registero.netlify.app)
 
 ## ✨ Features
 - ✅ User registration with form validation  
@@ -19,15 +19,18 @@
 
 ## 🚀 Getting Started
 
-### 1️⃣ Run the Backend
+### Run the Backend First
 ```bash
 cd backend
 npm install
 npm start
-### 2️⃣ Run the Frontend
+###  Run the Frontend Next
 cd frontend
 npm install
 npm run dev
 ```
+
+
+
 
 
