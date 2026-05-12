@@ -1,9 +1,31 @@
+
+
 # Login-Registration-With-Mongo-DB
+
+<h1 align="center">🔐 Login & Registration Project</h1>
+
+<p align="center">
+A simple, responsive, and modern Login & Registration system 🚀
+</p>
+
+<p align="center">
+
+<a href="https://login-registero.netlify.app">
+  <img src="https://img.shields.io/badge/LIVE-DEMO-green?style=for-the-badge">
+</a>
+
+<a href="https://github.com/AnimeshNaskar/Login-Registration-With-Mongo-DB">
+  <img src="https://img.shields.io/badge/GITHUB-REPO-black?style=for-the-badge&logo=github">
+</a>
+
+</p>
+
 
 
 ## 🌐 Live Demo
 
 👉 [Check out the live app on Netlify]: (https://login-registero.netlify.app)
+
 
 
 ## ✨ Features
@@ -14,6 +36,7 @@
 - ✅ Clean and modern UI 🎨  
 - ✅ MongoDB database integration  
 - ✅ Deployed online 🌍  
+
 
 
 ## 🛠️ Tech Stack
