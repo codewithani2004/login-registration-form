@@ -1,33 +1,33 @@
 ## Login-Registration-With-Mongo-DB
 
-## 🌐 Live Demo
-👉 Check out the live app on Netlify:
-
+# 🌐 Live Demo
+👉 [Check out the live app on Netlify](https://login-registero.netlify.app)
 
 ## ✨ Features
-✅ User registration with form validation
-✅ Secure login system
-✅ Fully responsive design 📱
-✅ Clean UI with modern styling 🎨
-✅ Deployed on Netlify 🌍
+- ✅ User registration with form validation  
+- ✅ Secure login system  
+- ✅ Fully responsive design 📱  
+- ✅ Clean and modern UI 🎨  
+- ✅ MongoDB database integration  
+- ✅ Deployed online 🌍  
 
-
- ## 🛠️ Tech Stack
-Frontend: HTML5, CSS3, JavaScript, React
-Backend: Node.js
-Database: MongoDB
-Deployment: Netlify
-
+## 🛠️ Tech Stack
+- Frontend:** React, HTML5, CSS3, JavaScript  
+- **Backend:** Node.js, Express.js  
+- **Database:** MongoDB  
+- **Deployment:** Netlify & Render  
 
 ## 🚀 Getting Started
-   Run it Locally
 
-###  Run the Backend First
+### 1️⃣ Run the Backend
+```bash
 cd backend
 npm install
-npm run
-###  Run the Frontend Next
+npm start
+### 2️⃣ Run the Frontend
 cd frontend
 npm install
 npm run dev
+```
+
 
