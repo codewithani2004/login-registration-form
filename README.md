@@ -1,10 +1,10 @@
 ## Login-Registration-With-Mongo-DB
 
-🌐 Live Demo
+## 🌐 Live Demo
 👉 Check out the live app on Netlify:
 
 
-✨ Features
+## ✨ Features
 ✅ User registration with form validation
 ✅ Secure login system
 ✅ Fully responsive design 📱
@@ -12,14 +12,14 @@
 ✅ Deployed on Netlify 🌍
 
 
-🛠️ Tech Stack
+ ## 🛠️ Tech Stack
 Frontend: HTML5, CSS3, JavaScript, React
 Backend: Node.js
 Database: MongoDB
 Deployment: Netlify
 
 
-🚀 Getting Started
+## 🚀 Getting Started
    Run it Locally
 
 ###  Run the Backend First
