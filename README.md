@@ -43,8 +43,8 @@ npm run dev
 
 Run it Locally
 
-### Run the Backend First
 ```bash
+### Run the Backend First
 cd backend
 npm install
 npm start
