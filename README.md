@@ -39,6 +39,24 @@ npm install
 npm run dev
 ```
 
+## 🚀 Getting Started
+
+Run it Locally
+
+### Run the Backend First
+```bash
+cd backend
+npm install
+npm start
+```
+
+### Run the Frontend Next
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
 
 
 
