@@ -1,6 +1,6 @@
-## Login-Registration-With-Mongo-DB
+# Login-Registration-With-Mongo-DB
 
-# 🌐 Live Demo
+## 🌐 Live Demo
 👉 [Check out the live app on Netlify] (https://login-registero.netlify.app)
 
 ## ✨ Features
@@ -17,14 +17,17 @@
 - **Database:** MongoDB  
 - **Deployment:** Netlify & Render  
 
+
 ## 🚀 Getting Started
 
-### Run the Backend First
+###  Run the Backend First
 ```bash
 cd backend
 npm install
 npm start
+```
 ###  Run the Frontend Next
+```bash
 cd frontend
 npm install
 npm run dev
