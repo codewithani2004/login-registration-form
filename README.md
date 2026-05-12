@@ -1,8 +1,10 @@
 
 
-# Login-Registration-With-Mongo-DB
+# Login Registration Form With MongoDB
 
-<h1 align="center">🔐 Login & Registration Project</h1>
+
+
+<h2 align="center">🔐 Login & Registration Project</h2>
 
 <p align="center">
 A simple, responsive, and modern Login & Registration system 🚀
